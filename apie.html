@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Apie | FolkBox</title>
+    <meta name="description" content="Armonikos istorija Lietuvoje: rusiškoji chromkė, Peterburgo armonika, Vienos armonika, bandonija. Meistrai, atlikėjai, chronologija.">
     <link rel="icon" type="image/png" href="images/icon.png">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
@@ -31,10 +32,46 @@
             padding: 40px 20px;
             flex: 1;
             background: rgb(224, 224, 224);
-            text-align: center; /* CENTRUOTAS VISAS TURINYS */
+            text-align: center;
+            position: relative;
         }
 
-        /* GRĮŽTAMOJO MYGTUKO STILIUS */
+        /* LANGUAGE BUTTONS */
+        .lang-buttons {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            display: flex;
+            gap: 10px;
+        }
+
+        .lang-btn {
+            background: #282936;
+            color: white;
+            border: 2px solid white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 14px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lang-btn:hover {
+            background: white;
+            color: #282936;
+        }
+
+        .lang-btn.active {
+            background: white;
+            color: #282936;
+        }
+
         .back-button {
             position: relative;
             display: inline-block;
@@ -46,8 +83,8 @@
             font-size: inherit;
             font-family: inherit;
             width: 10rem;
-            margin: 0 auto 40px auto; /* CENTRUOTAS MARGIN */
-            text-align: left; /* atstatom teksto lygiavimą mygtuko viduje */
+            margin: 0 auto 40px auto;
+            text-align: left;
         }
 
         .back-button .circle {
@@ -165,7 +202,6 @@
             color: #222;
         }
 
-        /* Nuotraukų stilius - centruotas */
         .image-container {
             margin: 30px auto;
             text-align: center;
@@ -203,89 +239,227 @@
 
         @media (max-width: 600px) {
             h1 { font-size: 2.5rem; }
+            .lang-buttons {
+                top: 10px;
+                right: 10px;
+            }
+            .container {
+                padding-top: 60px;
+            }
         }
     </style>
 </head>
 <body>
 
+<!-- LANGUAGE BUTTONS -->
+<div class="lang-buttons">
+    <button class="lang-btn active" onclick="changeLanguage('lt')">LT</button>
+    <button class="lang-btn" onclick="changeLanguage('en')">EN</button>
+    <button class="lang-btn" onclick="changeLanguage('ru')">RU</button>
+</div>
+
 <div class="container">
     
-    <!-- GRĮŽTAMASIS MYGTUKAS - CENTRUOTAS -->
+    <!-- BACK BUTTON -->
     <button class="back-button" onclick="window.location.href='index.html'">
         <span class="circle">
             <span class="icon arrow"></span>
         </span>
-        <span class="button-text">GRĮŽTI</span>
+        <span class="button-text" id="back-text">GRĮŽTI</span>
     </button>
     
-    <h1>ARMONIKA</h1>
+    <h1 id="title-armonika">ARMONIKA</h1>
 
-    <!-- Įžanga -->
-    <p><strong>Armonika</strong> – dumplinis muzikos instrumentas, priklausantis liežuvėlinių aerofonų grupei. Garsas išgaunamas virpant metaliniams liežuvėliams, pro kuriuos pučiamas oras dumplėmis. Lietuvoje paplito XIX a. viduryje ir greitai tapo nepakeičiama kaimo vakaronių, vestuvių ir kitų švenčių dalimi.</p>
+    <!-- Intro -->
+    <p id="intro-text"><strong>Armonika</strong> – dumplinis muzikos instrumentas, priklausantis liežuvėlinių aerofonų grupei. Garsas išgaunamas virpant metaliniams liežuvėliams, pro kuriuos pučiamas oras dumplėmis. Lietuvoje paplito XIX a. viduryje ir greitai tapo nepakeičiama kaimo vakaronių, vestuvių ir kitų švenčių dalimi.</p>
 
     <!-- CHROMKĖ -->
-    <h2>Rusiška armonika</h2>
+    <h2 id="russian-title">Rusiška armonika</h2>
     
     <div class="image-container">
         <img src="images/chromke.png" alt="Rusiška chromkė">
-        <div class="image-caption">Rusiškoji "chromkė"</div>
+        <div class="image-caption" id="chromke-caption">Rusiškoji "chromkė"</div>
     </div>
     
-    <p>XX a. vid. Rusijoje sukurta <strong>chromkė</strong> (rus. хромка) greitai išstūmė kitas rusiškų armonikų rūšis ir tapo populiariausia tiek Rusijoje, tiek Lietuvoje. Jos esminis bruožas – <strong>vienodas garsas tiek tempiant, tiek spaudžiant dumples</strong>. Tai radikaliai skiriasi nuo senesnių armonikų, kur garso aukštis priklausė nuo dumplių judėjimo krypties.</p>
+    <p id="chromke-text1">XX a. vid. Rusijoje sukurta <strong>chromkė</strong> (rus. хромка) greitai išstūmė kitas rusiškų armonikų rūšis ir tapo populiariausia tiek Rusijoje, tiek Lietuvoje. Jos esminis bruožas – <strong>vienodas garsas tiek tempiant, tiek spaudžiant dumples</strong>. Tai radikaliai skiriasi nuo senesnių armonikų, kur garso aukštis priklausė nuo dumplių judėjimo krypties.</p>
     
-    <p>Pavadinimas „chromkė“ įsitvirtino dėl išplėstos diapazono – nors ji nėra visiškai chromatinė, kelios pridėtos chromatinės natos suteikia grojimui „chromatinį“ pojūtį. Konstrukcijoje kiekvienas mygtukas atidaro du vienodai suderintus liežuvėlius – vienas skamba tempiant, kitas spaudžiant. Melodijai skirta dviejų eilių klaviatūra, bosams ir akordams – 2–3 eilės kairėje rankoje.</p>
+    <p id="chromke-text2">Pavadinimas „chromkė“ įsitvirtino dėl išplėstos diapazono – nors ji nėra visiškai chromatinė, kelios pridėtos chromatinės natos suteikia grojimui „chromatinį“ pojūtį. Konstrukcijoje kiekvienas mygtukas atidaro du vienodai suderintus liežuvėlius – vienas skamba tempiant, kitas spaudžiant. Melodijai skirta dviejų eilių klaviatūra, bosams ir akordams – 2–3 eilės kairėje rankoje.</p>
 
     <!-- KITI TIPAI -->
-    <h2>Kiti armonikų tipai</h2>
+    <h2 id="other-title">Kiti armonikų tipai</h2>
 
-    <h3>Vienos armonika</h3>
+    <h3 id="vienna-title">Vienos armonika</h3>
     <div class="image-container">
         <img src="images/vienos.jpg" alt="Vienos armonika">
-        <div class="image-caption">Vienos armonika</div>
+        <div class="image-caption" id="vienna-caption">Vienos armonika</div>
     </div>
-    <p>1829 m. Vienoje C. Demianas patobulino Buschmanno instrumentą – pridėjo gatavų mažorinių akordų klaviatūrą. Taip gimė <strong>Vienos armonika</strong>. Jos garsas priklauso nuo dumplių krypties: tempiant ir spaudžiant skamba skirtingi garsai. Būna 2–5 eilių, dažnai turi gatavus mažoro ir minoro akordus. Dviejų eilių variantas – tai dviejų vienaeilių armonikų, suderintų gretimomis tonacijomis, junginys.</p>
+    <p id="vienna-text">1829 m. Vienoje C. Demianas patobulino Buschmanno instrumentą – pridėjo gatavų mažorinių akordų klaviatūrą. Taip gimė <strong>Vienos armonika</strong>. Jos garsas priklauso nuo dumplių krypties: tempiant ir spaudžiant skamba skirtingi garsai. Būna 2–5 eilių, dažnai turi gatavus mažoro ir minoro akordus. Dviejų eilių variantas – tai dviejų vienaeilių armonikų, suderintų gretimomis tonacijomis, junginys.</p>
 
-    <h3>Peterburgo armonika</h3>
+    <h3 id="petersburg-title">Peterburgo armonika</h3>
     <div class="image-container">
         <img src="images/peterburgo.jpg" alt="Peterburgo armonika">
-        <div class="image-caption">Peterburgo armonika</div>
+        <div class="image-caption" id="petersburg-caption">Peterburgo armonika</div>
     </div>
-    <p>XX a. pr. Rusijos caro nurodymu Sankt Peterburge įkurtas muzikos instrumentų fabrikas gamino reprezentacines armonikas. Tai Vienos armonikos tipo modifikacija, būna 2–4 eilių. <strong>Lietuvą pasiekė ~1920 m.</strong> Po II pasaulinio karo fabrikui sudegus, jame dirbę lietuvių meistrai grįžo namo ir pradėjo savarankišką gamybą. Taip susiformavo lietuviška armonikos gamybos mokykla, o instrumentas liaudyje žinomas kaip <em>„peterburska“, „piterska“, „pataburska“</em>.</p>
+    <p id="petersburg-text">XX a. pr. Rusijos caro nurodymu Sankt Peterburge įkurtas muzikos instrumentų fabrikas gamino reprezentacines armonikas. Tai Vienos armonikos tipo modifikacija, būna 2–4 eilių. <strong>Lietuvą pasiekė ~1920 m.</strong> Po II pasaulinio karo fabrikui sudegus, jame dirbę lietuvių meistrai grįžo namo ir pradėjo savarankišką gamybą. Taip susiformavo lietuviška armonikos gamybos mokykla, o instrumentas liaudyje žinomas kaip <em>„peterburska“, „piterska“, „pataburska“</em>.</p>
 
-    <h3>Bandonija</h3>
+    <h3 id="bandonija-title">Bandonija</h3>
     <div class="image-container">
         <img src="images/bandonija.png" alt="Bandonija">
-        <div class="image-caption">Bandonija</div>
+        <div class="image-caption" id="bandonija-caption">Bandonija</div>
     </div>
-    <p><strong>Mažojoje Lietuvoje</strong> (Klaipėdos krašte) paplitusi bandonija – vokiškos kilmės keturkampė "armonika", naudojama ir tango muzikoje Lotynų Amerikoje. Lietuvoje grota solo arba kapelose, būdinga regioninė tradicija. Jos forma ir klaviatūra skiriasi nuo kitų tipų.</p>
+    <p id="bandonija-text"><strong>Mažojoje Lietuvoje</strong> (Klaipėdos krašte) paplitusi bandonija – vokiškos kilmės keturkampė "armonika", naudojama ir tango muzikoje Lotynų Amerikoje. Lietuvoje grota solo arba kapelose, būdinga regioninė tradicija. Jos forma ir klaviatūra skiriasi nuo kitų tipų.</p>
 
     <!-- ARMONIKA LIETUVOJE -->
-    <h2>Armonika Lietuvoje</h2>
+    <h2 id="lithuania-title">Armonika Lietuvoje</h2>
     
-    <p>1853 m. Antanas Baranauskas savo dienoraštyje pirmąkart mini armoniką Lietuvoje. Instrumentai daugiausia įvežti iš Vokietijos ir Austrijos, mažiau – iš Rusijos ir Italijos.</p>
+    <p id="lithuania-text1">1853 m. Antanas Baranauskas savo dienoraštyje pirmąkart mini armoniką Lietuvoje. Instrumentai daugiausia įvežti iš Vokietijos ir Austrijos, mažiau – iš Rusijos ir Italijos.</p>
     
-    <p><strong>Paplitimo raida:</strong> XIX a. pab. – 2 eilių Vienos armonika; ~1920–1950 – Peterburgo armonika (šiaurės rytų Aukštaitija); XX a. vid. – rusiškoji chromkė (ypač sovietmečiu); Mažojoje Lietuvoje – bandonija.</p>
+    <p id="lithuania-text2"><strong>Paplitimo raida:</strong> XIX a. pab. – 2 eilių Vienos armonika; ~1920–1950 – Peterburgo armonika (šiaurės rytų Aukštaitija); XX a. vid. – rusiškoji chromkė (ypač sovietmečiu); Mažojoje Lietuvoje – bandonija.</p>
 
-    <p>2019 m. <strong>Šiaurės rytų aukštaičių muzikavimas Peterburgo armonika</strong> įtrauktas į Nematerialaus kultūros paveldo vertybių sąvadą.</p>
+    <p id="lithuania-text3">2019 m. <strong>Šiaurės rytų aukštaičių muzikavimas Peterburgo armonika</strong> įtrauktas į Nematerialaus kultūros paveldo vertybių sąvadą.</p>
 
-    <h1>FolkBox ir Aš</h1>
+    <h1 id="folkbox-title">FolkBox ir Aš</h1>
 
-    <p>FolkBox – vizualus įrankis, skirtas padėti suprasti rusiškos armonikos išdėstymą. Galite pasirinkti tonaciją ir pamatyti mygtukų išdėstymą bei melodijos pusėje sugroti galimus akordus.</p>
+    <p id="folkbox-text1">FolkBox – vizualus įrankis, skirtas padėti suprasti rusiškos armonikos išdėstymą. Galite pasirinkti tonaciją ir pamatyti mygtukų išdėstymą bei melodijos pusėje sugroti galimus akordus.</p>
 
-    <p>2022 metais visai netyčia mano rankose atsidūrė armonika. Pradėjau iš klausos mokytis groti – ir visai greitai pramokau. Iki šiol groju tik iš klausos, be natų ar muzikos teorijos.<br><br>
+    <p id="folkbox-text2">2022 metais visai netyčia mano rankose atsidūrė armonika. Pradėjau iš klausos mokytis groti – ir visai greitai pramokau. Iki šiol groju tik iš klausos, be natų ar muzikos teorijos.<br><br>
     Šią svetainę sukūriau norėdamas padėti sau ir kitiems suprasti armonikos logiką. Pats mokydamasis pastebėjau, kad dažniausios schemos būna fiksuotos vienai tonacijai – galvoje "persidaryti" nemoku, o "skaičiuoti", kaip pasikeistų natos rankomis, didelis vargas. Taip gimė FolkBox – įrankis, kuris leidžia pasirinkti tonacijas ir matyti, kaip keičiasi natos, bet išlieka tie patys intervalai.<br><br>
     Dabar studijuoju Dirbtinio intelekto sistemas Vilniaus Gedimino technikos universitete ir bandau sujungti technologijas su savo pomėgiu liaudies muzikai.<br><br>
     FolkBox – tai mano bandymas suderinti šias dvi sritis: algoritmus ir armonikos garsą. Tikiuosi, pravers!</p>
 
-    <!-- ŠALTINIAI -->
-    <div class="footnote">
+    <!-- FOOTNOTE -->
+    <div class="footnote" id="footnote">
         <p><strong>Šaltiniai:</strong> Visuotinė lietuvių enciklopedija (vle.lt), Vikipedija (lt.wikipedia.org). Rekomenduojama literatūra: A. Baika „Armonikų tipo instrumentai Lietuvoje“ (1984), „Kaimo armonikos“ (1994).</p>
     </div>
 
-    <div class="credit">
+    <div class="credit" id="credit">
         © 2026 FolkBox | Motiejus Kazabuckas
     </div>
 </div>
+
+<script>
+  const translations = {
+    lt: {
+      back: "GRĮŽTI",
+      titleArmonika: "ARMONIKA",
+      intro: "<strong>Armonika</strong> – dumplinis muzikos instrumentas, priklausantis liežuvėlinių aerofonų grupei. Garsas išgaunamas virpant metaliniams liežuvėliams, pro kuriuos pučiamas oras dumplėmis. Lietuvoje paplito XIX a. viduryje ir greitai tapo nepakeičiama kaimo vakaronių, vestuvių ir kitų švenčių dalimi.",
+      russianTitle: "Rusiška armonika",
+      chromkeCaption: "Rusiškoji \"chromkė\"",
+      chromkeText1: "XX a. vid. Rusijoje sukurta <strong>chromkė</strong> (rus. хромка) greitai išstūmė kitas rusiškų armonikų rūšis ir tapo populiariausia tiek Rusijoje, tiek Lietuvoje. Jos esminis bruožas – <strong>vienodas garsas tiek tempiant, tiek spaudžiant dumples</strong>. Tai radikaliai skiriasi nuo senesnių armonikų, kur garso aukštis priklausė nuo dumplių judėjimo krypties.",
+      chromkeText2: "Pavadinimas „chromkė“ įsitvirtino dėl išplėstos diapazono – nors ji nėra visiškai chromatinė, kelios pridėtos chromatinės natos suteikia grojimui „chromatinį“ pojūtį. Konstrukcijoje kiekvienas mygtukas atidaro du vienodai suderintus liežuvėlius – vienas skamba tempiant, kitas spaudžiant. Melodijai skirta dviejų eilių klaviatūra, bosams ir akordams – 2–3 eilės kairėje rankoje.",
+      otherTitle: "Kiti armonikų tipai",
+      viennaTitle: "Vienos armonika",
+      viennaCaption: "Vienos armonika",
+      viennaText: "1829 m. Vienoje C. Demianas patobulino Buschmanno instrumentą – pridėjo gatavų mažorinių akordų klaviatūrą. Taip gimė <strong>Vienos armonika</strong>. Jos garsas priklauso nuo dumplių krypties: tempiant ir spaudžiant skamba skirtingi garsai. Būna 2–5 eilių, dažnai turi gatavus mažoro ir minoro akordus. Dviejų eilių variantas – tai dviejų vienaeilių armonikų, suderintų gretimomis tonacijomis, junginys.",
+      petersburgTitle: "Peterburgo armonika",
+      petersburgCaption: "Peterburgo armonika",
+      petersburgText: "XX a. pr. Rusijos caro nurodymu Sankt Peterburge įkurtas muzikos instrumentų fabrikas gamino reprezentacines armonikas. Tai Vienos armonikos tipo modifikacija, būna 2–4 eilių. <strong>Lietuvą pasiekė ~1920 m.</strong> Po II pasaulinio karo fabrikui sudegus, jame dirbę lietuvių meistrai grįžo namo ir pradėjo savarankišką gamybą. Taip susiformavo lietuviška armonikos gamybos mokykla, o instrumentas liaudyje žinomas kaip <em>„peterburska“, „piterska“, „pataburska“</em>.",
+      bandonijaTitle: "Bandonija",
+      bandonijaCaption: "Bandonija",
+      bandonijaText: "<strong>Mažojoje Lietuvoje</strong> (Klaipėdos krašte) paplitusi bandonija – vokiškos kilmės keturkampė \"armonika\", naudojama ir tango muzikoje Lotynų Amerikoje. Lietuvoje grota solo arba kapelose, būdinga regioninė tradicija. Jos forma ir klaviatūra skiriasi nuo kitų tipų.",
+      lithuaniaTitle: "Armonika Lietuvoje",
+      lithuaniaText1: "1853 m. Antanas Baranauskas savo dienoraštyje pirmąkart mini armoniką Lietuvoje. Instrumentai daugiausia įvežti iš Vokietijos ir Austrijos, mažiau – iš Rusijos ir Italijos.",
+      lithuaniaText2: "<strong>Paplitimo raida:</strong> XIX a. pab. – 2 eilių Vienos armonika; ~1920–1950 – Peterburgo armonika (šiaurės rytų Aukštaitija); XX a. vid. – rusiškoji chromkė (ypač sovietmečiu); Mažojoje Lietuvoje – bandonija.",
+      lithuaniaText3: "2019 m. <strong>Šiaurės rytų aukštaičių muzikavimas Peterburgo armonika</strong> įtrauktas į Nematerialaus kultūros paveldo vertybių sąvadą.",
+      folkboxTitle: "FolkBox ir Aš",
+      folkboxText1: "FolkBox – vizualus įrankis, skirtas padėti suprasti rusiškos armonikos išdėstymą. Galite pasirinkti tonaciją ir pamatyti mygtukų išdėstymą bei melodijos pusėje sugroti galimus akordus.",
+      folkboxText2: "2022 metais visai netyčia mano rankose atsidūrė armonika. Pradėjau iš klausos mokytis groti – ir visai greitai pramokau. Iki šiol groju tik iš klausos, be natų ar muzikos teorijos.<br><br>Šią svetainę sukūriau norėdamas padėti sau ir kitiems suprasti armonikos logiką. Pats mokydamasis pastebėjau, kad dažniausios schemos būna fiksuotos vienai tonacijai – galvoje \"persidaryti\" nemoku, o \"skaičiuoti\", kaip pasikeistų natos rankomis, didelis vargas. Taip gimė FolkBox – įrankis, kuris leidžia pasirinkti tonacijas ir matyti, kaip keičiasi natos, bet išlieka tie patys intervalai.<br><br>Dabar studijuoju Dirbtinio intelekto sistemas Vilniaus Gedimino technikos universitete ir bandau sujungti technologijas su savo pomėgiu liaudies muzikai.<br><br>FolkBox – tai mano bandymas suderinti šias dvi sritis: algoritmus ir armonikos garsą. Tikiuosi, pravers!",
+      footnote: "<strong>Šaltiniai:</strong> Visuotinė lietuvių enciklopedija (vle.lt), Vikipedija (lt.wikipedia.org). Rekomenduojama literatūra: A. Baika „Armonikų tipo instrumentai Lietuvoje“ (1984), „Kaimo armonikos“ (1994).",
+      credit: "© 2026 FolkBox | Motiejus Kazabuckas"
+    },
+    en: {
+      back: "BACK",
+      titleArmonika: "HARMONIKA",
+      intro: "<strong>Harmonika</strong> is a bellows-driven free-reed aerophone. Sound is produced by metal reeds vibrating as air passes through them. It spread in Lithuania in the mid-19th century and quickly became an essential part of village parties, weddings and other celebrations.",
+      russianTitle: "Russian harmonika",
+      chromkeCaption: "Russian \"chromka\"",
+      chromkeText1: "In the mid-20th century, the <strong>chromka</strong> (Russian: хромка) was developed in Russia and quickly replaced other types of Russian harmonicas, becoming the most popular in both Russia and Lithuania. Its essential feature is <strong>the same sound when pushing and pulling the bellows</strong>. This radically differs from older harmonicas, where the pitch depended on the direction of the bellows movement.",
+      chromkeText2: "The name \"chromka\" became established due to its extended range – although it is not fully chromatic, a few added chromatic notes give it a \"chromatic\" feel. In its construction, each button opens two identically tuned reeds – one sounds when pushing, the other when pulling. The melody has a two-row keyboard, with 2-3 rows for basses and chords in the left hand.",
+      otherTitle: "Other types of harmonicas",
+      viennaTitle: "Vienna harmonika",
+      viennaCaption: "Vienna harmonika",
+      viennaText: "In 1829 in Vienna, C. Demian improved Buschmann's instrument by adding a pre-made major chord keyboard. Thus the <strong>Vienna harmonika</strong> was born. Its sound depends on the direction of the bellows: pushing and pulling produce different sounds. It has 2-5 rows, often with pre-made major and minor chords. The two-row version is a combination of two one-row harmonicas tuned in adjacent keys (e.g., C major and G major).",
+      petersburgTitle: "Petersburg harmonika",
+      petersburgCaption: "Petersburg harmonika",
+      petersburgText: "At the beginning of the 20th century, by order of the Russian Tsar, a musical instrument factory was established in St. Petersburg, producing decorative harmonicas. This is a modification of the Vienna harmonika, with 2-4 rows. <strong>It reached Lithuania around 1920.</strong> After the factory burned down after WWII, the Lithuanian craftsmen who worked there returned home and began independent production. This formed the Lithuanian harmonika-making school, and the instrument is known in folklore as <em>\"peterburska\", \"piterska\", \"pataburska\"</em>.",
+      bandonijaTitle: "Bandoneon",
+      bandonijaCaption: "Bandoneon",
+      bandonijaText: "In <strong>Mažoji Lietuva</strong> (Klaipėda region), the bandoneon – a German-origin square-shaped \"harmonika\" – is common, also used in tango music in Latin America. In Lithuania, it was played solo or in bands, a characteristic regional tradition. Its shape and keyboard differ from other types.",
+      lithuaniaTitle: "Harmonika in Lithuania",
+      lithuaniaText1: "In 1853, Antanas Baranauskas first mentioned the harmonika in his diary. Instruments were mostly imported from Germany and Austria, less from Russia and Italy.",
+      lithuaniaText2: "<strong>Spread:</strong> Late 19th century – 2-row Vienna harmonika; ~1920–1950 – Petersburg harmonika (northeastern Aukštaitija); mid-20th century – Russian chromka (especially during Soviet times); in Lithuania Minor – bandonija.",
+      lithuaniaText3: "In 2019, <strong>the playing of the Petersburg harmonika by the northeastern Aukštaitians</strong> was included in the Inventory of Intangible Cultural Heritage.",
+      folkboxTitle: "FolkBox and Me",
+      folkboxText1: "FolkBox is a visual tool designed to help understand the layout of the Russian harmonika. You can choose a key and see the button layout and the chords that can be played on the melody side.",
+      folkboxText2: "In 2022, a harmonika unexpectedly ended up in my hands. I started learning to play by ear – and quickly learned. To this day, I play only by ear, without sheet music or music theory.<br><br>I created this website to help myself and others understand the logic of the harmonika. While learning, I noticed that most diagrams are fixed to one key – I can't \"recalculate\" them in my head, and manually figuring out how the notes change is a pain. Thus FolkBox was born – a tool that allows you to choose keys and see how the notes change, while the intervals remain the same.<br><br>I am now studying Artificial Intelligence Systems at Vilnius Gediminas Technical University and trying to combine technology with my passion for folk music.<br><br>FolkBox is my attempt to combine these two areas: algorithms and the sound of the harmonika. I hope it helps!",
+      footnote: "<strong>Sources:</strong> Visuotinė lietuvių enciklopedija (vle.lt), Wikipedia (lt.wikipedia.org). Recommended literature: A. Baika „Armonikų tipo instrumentai Lietuvoje“ (1984), „Kaimo armonikos“ (1994).",
+      credit: "© 2026 FolkBox | Motiejus Kazabuckas"
+    },
+    ru: {
+      back: "НАЗАД",
+      titleArmonika: "ГАРМОНЬ",
+      intro: "<strong>Гармонь</strong> – язычковый пневматический музыкальный инструмент с мехами. Звук извлекается вибрирующими металлическими язычками, через которые проходит воздух от мехов. В Литве распространилась в середине XIX века и быстро стала неотъемлемой частью деревенских вечеринок, свадеб и других праздников.",
+      russianTitle: "Русская гармонь",
+      chromkeCaption: "Русская \"хромка\"",
+      chromkeText1: "В середине XX века в России была создана <strong>хромка</strong>, которая быстро вытеснила другие виды русских гармоней и стала самой популярной как в России, так и в Литве. Её основная особенность – <strong>одинаковый звук при сжатии и разжатии мехов</strong>. Это кардинально отличает её от более старых гармоней, где высота звука зависела от направления движения мехов.",
+      chromkeText2: "Название «хромка» закрепилось из-за расширенного диапазона – хотя она не полностью хроматическая, несколько добавленных хроматических нот придают ей «хроматическое» ощущение. В её конструкции каждая кнопка открывает два одинаково настроенных язычка – один звучит при сжатии, другой при разжатии. Для мелодии предназначена двухрядная клавиатура, для басов и аккордов – 2–3 ряда в левой руке.",
+      otherTitle: "Другие типы гармоней",
+      viennaTitle: "Венская гармонь",
+      viennaCaption: "Венская гармонь",
+      viennaText: "В 1829 году в Вене К. Демиан усовершенствовал инструмент Бушмана, добавив готовую клавиатуру мажорных аккордов. Так родилась <strong>Венская гармонь</strong>. Её звук зависит от направления мехов: при сжатии и разжатии звучат разные ноты. Бывает 2–5 рядная, часто с готовыми мажорными и минорными аккордами. Двухрядный вариант – это комбинация двух однорядных гармоней, настроенных в соседних тональностях.",
+      petersburgTitle: "Петроградке гармонь",
+      petersburgCaption: "Петроградке гармонь",
+      petersburgText: "В начале XX века по указу русского царя в Санкт-Петербурге была основана фабрика музыкальных инструментов, производившая репрезентативные гармони. Это модификация Венской гармони, бывает 2–4 рядная. <strong>В Литву попала около 1920 года.</strong> После того как фабрика сгорела после Второй мировой войны, работавшие там литовские мастера вернулись домой и начали самостоятельное производство. Так сформировалась литовская школа изготовления гармоней, а инструмент в народе известен как <em>«петербурска», «питерска», «патабурска»</em>.",
+      bandonijaTitle: "Бандонеон",
+      bandonijaCaption: "Бандонеон",
+      bandonijaText: "В <strong>Малой Литве</strong> (Клайпедский край) распространён бандонеон – квадратная «гармонь» немецкого происхождения, используемая также в музыке танго в Латинской Америке. В Литве на нём играли соло или в ансамблях, это характерная региональная традиция. Его форма и клавиатура отличаются от других типов.",
+      lithuaniaTitle: "Гармонь в Литве",
+      lithuaniaText1: "В 1853 году Антанас Баранаускас впервые упоминает гармонь в своём дневнике. Инструменты в основном ввозились из Германии и Австрии, меньше – из России и Италии.",
+      lithuaniaText2: "<strong>Распространение:</strong> конец XIX века – 2-рядная Венская гармонь; ~1920–1950 – Петербургская гармонь (северо-восточная Аукштайтия); середина XX века – русская хромка (особенно в советское время); в Малой Литве – бандонеон.",
+      lithuaniaText3: "В 2019 году <strong>игра на Петербургской гармони северо-восточных аукштайтов</strong> была включена в Список нематериального культурного наследия.",
+      folkboxTitle: "FolkBox и Я",
+      folkboxText1: "FolkBox – это визуальный инструмент, помогающий понять расположение кнопок русской гармони. Вы можете выбрать тональность и увидеть расположение кнопок и аккорды, которые можно сыграть на стороне мелодии.",
+      folkboxText2: "В 2022 году в моих руках совершенно случайно оказалась гармонь. Я начал учиться играть на слух – и довольно быстро научился. До сих пор играю только на слух, без нот и теории музыки.<br><br>Я создал этот сайт, чтобы помочь себе и другим понять логику гармони. Учась, я заметил, что большинство схем зафиксированы на одну тональность – в голове я не могу их «переделать», а вручную «вычислять», как меняются ноты – слишком муторно. Так родился FolkBox – инструмент, который позволяет выбирать тональности и видеть, как меняются ноты, но сохраняются одни и те же интервалы.<br><br>Сейчас я учусь на специальности «Системы искусственного интеллекта» в Вильнюсском техническом университете имени Гедиминаса и пытаюсь соединить технологии со своим увлечением народной музыкой.<br><br>FolkBox – это моя попытка совместить эти две сферы: алгоритмы и звук гармони. Надеюсь, пригодится!",
+      footnote: "<strong>Источники:</strong> Visuotinė lietuvių enciklopedija (vle.lt), Википедия (lt.wikipedia.org). Рекомендуемая литература: A. Baika „Armonikų tipo instrumentai Lietuvoje“ (1984), „Kaimo armonikos“ (1994).",
+      credit: "© 2026 FolkBox | Мотеюс Казабуцкас"
+    }
+  };
+
+  function changeLanguage(lang) {
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.remove('active');
+    });
+    event.target.classList.add('active');
+
+    // Update all texts
+    document.getElementById('back-text').textContent = translations[lang].back;
+    document.getElementById('title-armonika').textContent = translations[lang].titleArmonika;
+    document.getElementById('intro-text').innerHTML = translations[lang].intro;
+    document.getElementById('russian-title').textContent = translations[lang].russianTitle;
+    document.getElementById('chromke-caption').textContent = translations[lang].chromkeCaption;
+    document.getElementById('chromke-text1').innerHTML = translations[lang].chromkeText1;
+    document.getElementById('chromke-text2').innerHTML = translations[lang].chromkeText2;
+    document.getElementById('other-title').textContent = translations[lang].otherTitle;
+    document.getElementById('vienna-title').textContent = translations[lang].viennaTitle;
+    document.getElementById('vienna-caption').textContent = translations[lang].viennaCaption;
+    document.getElementById('vienna-text').innerHTML = translations[lang].viennaText;
+    document.getElementById('petersburg-title').textContent = translations[lang].petersburgTitle;
+    document.getElementById('petersburg-caption').textContent = translations[lang].petersburgCaption;
+    document.getElementById('petersburg-text').innerHTML = translations[lang].petersburgText;
+    document.getElementById('bandonija-title').textContent = translations[lang].bandonijaTitle;
+    document.getElementById('bandonija-caption').textContent = translations[lang].bandonijaCaption;
+    document.getElementById('bandonija-text').innerHTML = translations[lang].bandonijaText;
+    document.getElementById('lithuania-title').textContent = translations[lang].lithuaniaTitle;
+    document.getElementById('lithuania-text1').innerHTML = translations[lang].lithuaniaText1;
+    document.getElementById('lithuania-text2').innerHTML = translations[lang].lithuaniaText2;
+    document.getElementById('lithuania-text3').innerHTML = translations[lang].lithuaniaText3;
+    document.getElementById('folkbox-title').textContent = translations[lang].folkboxTitle;
+    document.getElementById('folkbox-text1').innerHTML = translations[lang].folkboxText1;
+    document.getElementById('folkbox-text2').innerHTML = translations[lang].folkboxText2;
+    document.getElementById('footnote').innerHTML = translations[lang].footnote;
+    document.getElementById('credit').textContent = translations[lang].credit;
+  }
+</script>
 
 </body>
 </html>

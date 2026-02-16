@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Armonika | FolkBox</title>
+    <meta name="description" content="Interaktyvi rusiškos chromkės schema. Keisk tonaciją ir matyk, kaip keičiasi mygtukų išdėstymas.">
     <link rel="icon" type="image/png" href="images/icon.png">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
@@ -40,6 +41,7 @@
             align-items: center;
             padding: 15px;
             overflow-y: auto;
+            position: relative;
         }
 
         /* =======================
@@ -55,6 +57,82 @@
         }
 
         /* =======================
+           LANGUAGE BUTTONS
+        ======================= */
+        .lang-buttons {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            z-index: 20;
+            display: flex;
+            gap: 8px;
+        }
+
+        .lang-btn {
+            background: #282936;
+            color: white;
+            border: 2px solid white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 12px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lang-btn:hover {
+            background: white;
+            color: #282936;
+        }
+
+        .lang-btn.active {
+            background: white;
+            color: #282936;
+        }
+
+        /* =======================
+           NOTE SYSTEM BUTTONS
+        ======================= */
+        .note-system-buttons {
+            position: absolute;
+            top: 60px;
+            right: 15px;
+            z-index: 20;
+            display: flex;
+            gap: 8px;
+        }
+
+        .note-btn {
+            background: #282936;
+            color: white;
+            border: 2px solid white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 14px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .note-btn:hover {
+            background: white;
+            color: #282936;
+        }
+
+        .note-btn.active {
+            background: white;
+            color: #282936;
+        }
+
+        /* =======================
            BACK BUTTON
         ======================= */
         .back-button {
@@ -65,10 +143,10 @@
             border: 0;
             background: transparent;
             padding: 0;
-            font-size: inherit;
+            font-size: 0.85rem;
             font-family: inherit;
-            width: 10rem;
-            margin: 0 auto 20px auto;
+            width: 7.5rem;
+            margin: 55px auto 8px auto;
             text-align: left;
         }
 
@@ -76,8 +154,8 @@
             transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
             position: relative;
             display: block;
-            width: 3rem;
-            height: 3rem;
+            width: 2.2rem;
+            height: 2.2rem;
             background: #282936;
             border-radius: 1.625rem;
         }
@@ -91,21 +169,21 @@
         }
 
         .back-button .circle .icon.arrow {
-            left: 0.625rem;
-            width: 1.125rem;
-            height: 0.125rem;
+            left: 0.5rem;
+            width: 0.9rem;
+            height: 0.1rem;
             background: none;
         }
 
         .back-button .circle .icon.arrow::before {
             position: absolute;
             content: "";
-            top: -0.29rem;
-            right: 0.0625rem;
-            width: 0.625rem;
-            height: 0.625rem;
-            border-top: 0.125rem solid #fff;
-            border-right: 0.125rem solid #fff;
+            top: -0.25rem;
+            right: 0.05rem;
+            width: 0.5rem;
+            height: 0.5rem;
+            border-top: 0.1rem solid #fff;
+            border-right: 0.1rem solid #fff;
             transform: rotate(45deg);
         }
 
@@ -115,8 +193,8 @@
             left: 0;
             right: 0;
             bottom: 0;
-            padding: 0.75rem 0;
-            margin-left: 1.85rem;
+            padding: 0.5rem 0;
+            margin-left: 1.4rem;
             color: #282936;
             font-weight: 700;
             line-height: 1.6;
@@ -131,7 +209,7 @@
 
         .back-button:hover .circle .icon.arrow {
             background: #fff;
-            transform: translate(1rem, 0);
+            transform: translate(0.8rem, 0);
         }
 
         .back-button:hover .button-text {
@@ -142,7 +220,7 @@
            KEY SELECTOR
         ======================= */
         .key-selector-container {
-            margin: 5px 0;
+            margin: 2px 0;
             position: relative;
             display: inline-block;
             flex-shrink: 0;
@@ -157,9 +235,9 @@
             border: 0;
             background: transparent;
             padding: 0;
-            font-size: inherit;
+            font-size: 0.85rem;
             font-family: inherit;
-            width: 14rem;
+            width: 11rem;
             text-align: left;
             background: transparent;
             color: #282936;
@@ -171,8 +249,8 @@
             transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
             position: relative;
             display: block;
-            width: 3rem;
-            height: 3rem;
+            width: 2.2rem;
+            height: 2.2rem;
             background: #282936;
             border-radius: 1.625rem;
         }
@@ -186,21 +264,21 @@
         }
 
         #key-selector-btn .circle .icon.arrow {
-            left: 0.625rem;
-            width: 1.125rem;
-            height: 0.125rem;
+            left: 0.5rem;
+            width: 0.9rem;
+            height: 0.1rem;
             background: none;
         }
 
         #key-selector-btn .circle .icon.arrow::before {
             position: absolute;
             content: "";
-            top: -0.29rem;
-            right: 0.0625rem;
-            width: 0.625rem;
-            height: 0.625rem;
-            border-top: 0.125rem solid #fff;
-            border-right: 0.125rem solid #fff;
+            top: -0.25rem;
+            right: 0.05rem;
+            width: 0.5rem;
+            height: 0.5rem;
+            border-top: 0.1rem solid #fff;
+            border-right: 0.1rem solid #fff;
             transform: rotate(45deg);
         }
 
@@ -210,8 +288,8 @@
             left: 0;
             right: 0;
             bottom: 0;
-            padding: 0.75rem 0;
-            margin-left: 1.85rem;
+            padding: 0.5rem 0;
+            margin-left: 1.4rem;
             color: #282936;
             font-weight: 700;
             line-height: 1.6;
@@ -227,7 +305,7 @@
 
         #key-selector-btn:hover .circle .icon.arrow {
             background: #fff;
-            transform: translate(1rem, 0);
+            transform: translate(0.8rem, 0);
         }
 
         #key-selector-btn:hover .button-text {
@@ -236,7 +314,7 @@
 
         #key-popup {
             position: absolute;
-            top: 60px;
+            top: 45px;
             left: 50%;
             transform: translateX(-50%);
             background: #282936;
@@ -280,7 +358,7 @@
         }
 
         /* =======================
-           CHORD SECTIONS - DVI EILUTĖS
+           CHORD SECTIONS
         ======================= */
         .chord-section {
             width: 100%;
@@ -428,24 +506,34 @@
         }
 
         /* =======================
-           MOBILE VERSION (iki 768px)
+           MOBILE VERSION
         ======================= */
         @media (max-width: 768px) {
+            html, body {
+                overflow: auto;
+                height: auto;
+                min-height: 100%;
+            }
+            
             body {
-                flex-direction: column;  /* Vietoj horizontalaus - vertikalus */
+                flex-direction: column;
+                height: auto;
+                overflow: auto;
+                min-height: 100vh;
             }
             
             .left-panel {
-                width: 100%;  /* Užima visą plotį */
-                height: 100vh; /* Visą aukštį */
-                padding: 10px;
+                width: 100%;
+                height: auto;
+                min-height: 100vh;
+                padding: 15px 10px;
+                overflow-y: visible;
             }
             
             .right-panel {
-                display: none;  /* Nuotrauka dingsta */
+                display: none;
             }
             
-            /* Sumažinam mygtukus, kad tilptų */
             .btn {
                 width: 36px;
                 height: 36px;
@@ -462,30 +550,41 @@
             .bass .c2 { left: 45px; }
             .bass .c3 { left: 90px; }
             
-            /* Mygtukų pozicijos šiek tiek mažesnės */
-            .melody .btn { top: calc(10px + var(--i) * 38px); }
-            
             #instrument-content {
-                width: 700px;  /* Šiek tiek mažesnis */
+                width: 700px;
             }
             
             .back-button {
-                width: 9rem;
-                margin-bottom: 10px;
+                width: 7rem;
+                margin-bottom: 5px;
+                margin-top: 70px;
             }
             
             #key-selector-btn {
-                width: 12rem;
+                width: 10rem;
             }
             
             .chord-btn {
                 font-size: 10px;
                 padding: 3px 6px;
             }
+
+            .credit {
+                margin-bottom: 20px;
+            }
+
+            .lang-buttons {
+                top: 10px;
+                right: 10px;
+            }
+
+            .note-system-buttons {
+                top: 55px;
+                right: 10px;
+            }
         }
 
         @media (max-width: 480px) {
-            /* Dar mažesniems ekranams */
             .btn {
                 width: 32px;
                 height: 32px;
@@ -509,14 +608,28 @@
     </style>
 </head>
 <body>
-    <!-- LEFT PANEL (40%) - Schema -->
+    <!-- LEFT PANEL -->
     <div class="left-panel">
-        <!-- GRĮŽTAMASIS MYGTUKAS -->
+        <!-- LANGUAGE BUTTONS -->
+        <div class="lang-buttons">
+            <button class="lang-btn active" onclick="changeLanguage('lt')">LT</button>
+            <button class="lang-btn" onclick="changeLanguage('en')">EN</button>
+            <button class="lang-btn" onclick="changeLanguage('ru')">RU</button>
+        </div>
+
+        <!-- NOTE SYSTEM BUTTONS -->
+        <div class="note-system-buttons">
+            <button class="note-btn" onclick="changeNoteSystem('sharp')">♯</button>
+            <button class="note-btn" onclick="changeNoteSystem('flat')">♭</button>
+            <button class="note-btn active" onclick="changeNoteSystem('german')">H</button>
+        </div>
+
+        <!-- BACK BUTTON -->
         <button class="back-button" onclick="window.location.href='index.html'">
             <span class="circle">
                 <span class="icon arrow"></span>
             </span>
-            <span class="button-text">GRĮŽTI</span>
+            <span class="button-text" id="back-text">GRĮŽTI</span>
         </button>
 
         <!-- KEY SELECTOR POPUP -->
@@ -525,7 +638,7 @@
                 <span class="circle">
                     <span class="icon arrow"></span>
                 </span>
-                <span class="button-text">A (Lia-dur)</span>
+                <span class="button-text" id="key-text">A (Lia-dur)</span><!-- Updated dynamically -->
             </button>
             <div id="key-popup"></div>
         </div>
@@ -540,78 +653,164 @@
             </div>
         </div>
 
-        <!-- CHORD SECTION - DVI EILUTĖS -->
+        <!-- CHORD SECTION -->
         <div class="chord-section">
             <div class="chord-row">
-                <h3>MAŽORAS</h3>
+                <h3 id="major-title">MAŽORAS</h3>
                 <div id="chord-bar-major" class="chord-buttons"></div>
             </div>
             <div class="chord-row">
-                <h3>MINORAS</h3>
+                <h3 id="minor-title">MINORAS</h3>
                 <div id="chord-bar-minor" class="chord-buttons"></div>
             </div>
         </div>
 
-        <p class="intro-text">
+        <p class="intro-text" id="intro-text">
             FolkBox – vizualus įrankis, skirtas padėti suprasti rusiškos armonikos išdėstymą. Pasirink tonaciją ir pamatyk mygtukų išdėstymą bei galimus, melodijos pusėje sugroti, akordus.
         </p>
 
-        <div class="credit">
+        <div class="credit" id="credit">
             © 2026 FolkBox | Motiejus Kazabuckas
         </div>
     </div>
 
-    <!-- RIGHT PANEL (60%) - Background image -->
+    <!-- RIGHT PANEL -->
     <div class="right-panel"></div>
 
 <script>
     (function() {
         // ========================
-        // CONSTANTS & DATA
+        // NOTE SYSTEMS
         // ========================
-        const NOTES = ["C","Cis","D","Dis","E","F","Fis","G","Gis","A","Ais","H"];
+        const NOTE_SYSTEMS = {
+            german: ["C","Cis","D","Dis","E","F","Fis","G","Gis","A","Ais","H"],
+            sharp: ["C","C#","D","D#","E","F","F#","G","G#","A","A#","B"],
+            flat: ["C","Db","D","Eb","E","F","Gb","G","Ab","A","Bb","B"]
+        };
+
+        // Base layout in A (using german system as reference)
+        const MELODY_ROW1_GERMAN = ["C","F","A","Cis","E","Gis","H","D","Fis","A","Cis","E","Gis"];
+        const MELODY_ROW2_GERMAN = ["Dis","H","D","Fis","A","Cis","E","Gis","H","D","Fis","A"];
         
-        const MELODY_ROW1_A = ["C","F","A","Cis","E","Gis","H","D","Fis","A","Cis","E","Gis"];
-        const MELODY_ROW2_A = ["Dis","H","D","Fis","A","Cis","E","Gis","H","D","Fis","A"];
-        
-        const BASS_COL1_A = ["H","Fis","Gis","A","H","Cis","D","E","Fis"];
-        const BASS_COL2_A = ["Gis7","Gis","Cis7","Cis","Fism","Fis","Hm","H"];
-        const BASS_COL3_A = ["H7","H","E","E","A","A","D","D"];
+        const BASS_COL1_GERMAN = ["H","Fis","Gis","A","H","Cis","D","E","Fis"];
+        const BASS_COL2_GERMAN = ["Gis7","Gis","Cis7","Cis","Fism","Fis","Hm","H"];
+        const BASS_COL3_GERMAN = ["H7","H","E","E","A","A","D","D"];
+
+        // Lithuanian solfege names for each note (by german index)
+        const SOLFEGE_LT = {
+            "C": "Do", "Cis": "Do#", "D": "Re", "Dis": "Re#",
+            "E": "Mi", "F": "Fa", "Fis": "Fa#", "G": "Sol",
+            "Gis": "Sol#", "A": "Lia", "Ais": "Sib", "H": "Si"
+        };
+        const SOLFEGE_RU = {
+            "C": "До", "Cis": "До#", "D": "Ре", "Dis": "Ре#",
+            "E": "Ми", "F": "Фа", "Fis": "Фа#", "G": "Соль",
+            "Gis": "Соль#", "A": "Ля", "Ais": "Ля#/Сиb", "H": "Си"
+        };
 
         const AVAILABLE_KEYS = [
-            { note: "C", description: "Do-dur" },
-            { note: "Cis", description: "Cis-dur" },
-            { note: "D", description: "Re-dur" },
-            { note: "Dis", description: "Dis-dur" },
-            { note: "E", description: "Mi-dur" },
-            { note: "F", description: "Fa-dur" },
-            { note: "Fis", description: "Fis-dur" },
-            { note: "G", description: "Sol-dur" },
-            { note: "Gis", description: "Gis-dur" },
-            { note: "A", description: "Lia-dur" },
-            { note: "Ais", description: "B-dur / Sib-dur" },
-            { note: "H", description: "Si-dur" }
+            { note: "C" }, { note: "Cis" }, { note: "D" }, { note: "Dis" },
+            { note: "E" }, { note: "F" }, { note: "Fis" }, { note: "G" },
+            { note: "Gis" }, { note: "A" }, { note: "Ais" }, { note: "H" }
         ];
 
-        let CURRENT_KEY = "A";
-        let CURRENT_CHORD = { root: null, type: null };  // { root: "C", type: "major" } arba "minor"
-
-        function base(n) { return n.replace(/7|m/g,""); }
-        function suf(n) { return n.replace(base(n),""); }
-
-        function transpose(n, s) {
-            const i = NOTES.indexOf(base(n));
-            return (i === -1) ? n : NOTES[(i + s + 12) % 12] + suf(n);
+        // Dynamic description based on current language
+        function getKeyDescription(germanNote, lang) {
+            if (lang === 'lt') return SOLFEGE_LT[germanNote] + '-dur';
+            if (lang === 'ru') return SOLFEGE_RU[germanNote] + '-мажор';
+            // English: use the converted note name + "major"
+            const displayNote = convertNote(germanNote, CURRENT_NOTE_SYSTEM);
+            return displayNote + ' major';
         }
 
+        let CURRENT_KEY = "A";
+        let CURRENT_CHORD = { root: null, type: null };
+        let CURRENT_NOTE_SYSTEM = 'german';
+        let CURRENT_LANG = 'lt';
+
+        // Convert a note from german system to target system
+        // Notes are always stored internally in german system
+        function convertNote(germanNote, targetSystem) {
+            if (!germanNote) return germanNote;
+            
+            // Handle bass suffixes like 7 and m (e.g. "Gis7", "Fism", "Hm", "H7")
+            // [A-H] includes H which is used in the German system for B natural
+            const match = germanNote.match(/^([A-H](?:is)?)([m7]*)$/);
+            if (!match) return germanNote;
+            
+            const baseNote = match[1];
+            const suffix = match[2] || '';
+            
+            // Find index in german system
+            const idx = NOTE_SYSTEMS.german.indexOf(baseNote);
+            if (idx === -1) return germanNote;
+            
+            // Return converted note in target system
+            return NOTE_SYSTEMS[targetSystem][idx] + suffix;
+        }
+
+        // Convert an array of notes
+        function convertNotes(notes, targetSystem) {
+            return notes.map(n => convertNote(n, targetSystem));
+        }
+
+        // Generate layout for current key and note system
         function generate(key) {
-            const shift = NOTES.indexOf(key) - NOTES.indexOf("A");
+            const shift = NOTE_SYSTEMS.german.indexOf(key) - NOTE_SYSTEMS.german.indexOf("A");
+            
+            // Transpose the german base layouts
+            const r1_german = MELODY_ROW1_GERMAN.map(n => {
+                const base = n.replace(/[m7]/g, '');
+                const suffix = n.replace(base, '');
+                const idx = NOTE_SYSTEMS.german.indexOf(base);
+                if (idx === -1) return n;
+                const newBase = NOTE_SYSTEMS.german[(idx + shift + 12) % 12];
+                return newBase + suffix;
+            });
+            
+            const r2_german = MELODY_ROW2_GERMAN.map(n => {
+                const base = n.replace(/[m7]/g, '');
+                const suffix = n.replace(base, '');
+                const idx = NOTE_SYSTEMS.german.indexOf(base);
+                if (idx === -1) return n;
+                const newBase = NOTE_SYSTEMS.german[(idx + shift + 12) % 12];
+                return newBase + suffix;
+            });
+            
+            const b1_german = BASS_COL1_GERMAN.map(n => {
+                const base = n.replace(/[m7]/g, '');
+                const suffix = n.replace(base, '');
+                const idx = NOTE_SYSTEMS.german.indexOf(base);
+                if (idx === -1) return n;
+                const newBase = NOTE_SYSTEMS.german[(idx + shift + 12) % 12];
+                return newBase + suffix;
+            });
+            
+            const b2_german = BASS_COL2_GERMAN.map(n => {
+                const base = n.replace(/[m7]/g, '');
+                const suffix = n.replace(base, '');
+                const idx = NOTE_SYSTEMS.german.indexOf(base);
+                if (idx === -1) return n;
+                const newBase = NOTE_SYSTEMS.german[(idx + shift + 12) % 12];
+                return newBase + suffix;
+            });
+            
+            const b3_german = BASS_COL3_GERMAN.map(n => {
+                const base = n.replace(/[m7]/g, '');
+                const suffix = n.replace(base, '');
+                const idx = NOTE_SYSTEMS.german.indexOf(base);
+                if (idx === -1) return n;
+                const newBase = NOTE_SYSTEMS.german[(idx + shift + 12) % 12];
+                return newBase + suffix;
+            });
+
+            // Convert to current note system
             return {
-                r1: MELODY_ROW1_A.map(n => transpose(n, shift)),
-                r2: MELODY_ROW2_A.map(n => transpose(n, shift)),
-                b1: BASS_COL1_A.map(n => transpose(n, shift)),
-                b2: BASS_COL2_A.map(n => transpose(n, shift)),
-                b3: BASS_COL3_A.map(n => transpose(n, shift)),
+                r1: convertNotes(r1_german, CURRENT_NOTE_SYSTEM),
+                r2: convertNotes(r2_german, CURRENT_NOTE_SYSTEM),
+                b1: convertNotes(b1_german, CURRENT_NOTE_SYSTEM),
+                b2: convertNotes(b2_german, CURRENT_NOTE_SYSTEM),
+                b3: convertNotes(b3_german, CURRENT_NOTE_SYSTEM)
             };
         }
 
@@ -680,10 +879,10 @@
         }
 
         function chordNotes(root, type) {
-            const idx = NOTES.indexOf(root);
+            const idx = NOTE_SYSTEMS[CURRENT_NOTE_SYSTEM].indexOf(root);
             if (idx === -1) return [];
-            const third = NOTES[(idx + (type === "major" ? 4 : 3)) % 12];
-            const fifth = NOTES[(idx + 7) % 12];
+            const third = NOTE_SYSTEMS[CURRENT_NOTE_SYSTEM][(idx + (type === "major" ? 4 : 3)) % 12];
+            const fifth = NOTE_SYSTEMS[CURRENT_NOTE_SYSTEM][(idx + 7) % 12];
             return [root, third, fifth];
         }
 
@@ -713,8 +912,7 @@
             
             const set = getMelodyNotesSet();
 
-            NOTES.forEach(root => {
-                // Major
+            NOTE_SYSTEMS[CURRENT_NOTE_SYSTEM].forEach(root => {
                 const majorTriad = chordNotes(root, "major");
                 if (majorTriad.every(n => set.has(n))) {
                     const btn = document.createElement("button");
@@ -743,7 +941,6 @@
                     });
                 }
 
-                // Minor
                 const minorTriad = chordNotes(root, "minor");
                 if (minorTriad.every(n => set.has(n))) {
                     const btn = document.createElement("button");
@@ -774,13 +971,20 @@
             });
         }
 
+        // Helper to get display name for a key
+        function getKeyDisplayText(keyInfo) {
+            const displayNote = convertNote(keyInfo.note, CURRENT_NOTE_SYSTEM);
+            const desc = getKeyDescription(keyInfo.note, CURRENT_LANG);
+            return displayNote + ' (' + desc + ')';
+        }
+
         function setupKeyPopup() {
             const popup = document.getElementById("key-popup");
             const selectorBtn = document.getElementById("key-selector-btn");
             
             AVAILABLE_KEYS.forEach(keyInfo => {
                 const btn = document.createElement("button");
-                btn.textContent = `${keyInfo.note} (${keyInfo.description})`;
+                btn.textContent = getKeyDisplayText(keyInfo);
                 btn.dataset.key = keyInfo.note;
                 
                 if (keyInfo.note === CURRENT_KEY) btn.classList.add("active");
@@ -791,7 +995,7 @@
                     
                     const buttonText = selectorBtn.querySelector('.button-text');
                     if (buttonText) {
-                        buttonText.textContent = `${keyInfo.note} (${keyInfo.description})`;
+                        buttonText.textContent = getKeyDisplayText(keyInfo);
                     }
                     
                     document.querySelectorAll("#key-popup button:not(.close-popup)").forEach(b => b.classList.remove("active"));
@@ -805,7 +1009,8 @@
             });
             
             const closeBtn = document.createElement("button");
-            closeBtn.textContent = "Uždaryti";
+            const closeTxt = { lt: "Uždaryti", en: "Close", ru: "Закрыть" };
+            closeBtn.textContent = closeTxt[CURRENT_LANG] || "Uždaryti";
             closeBtn.className = "close-popup";
             closeBtn.addEventListener("click", () => popup.style.display = "none");
             popup.appendChild(closeBtn);
@@ -849,12 +1054,129 @@
             setTimeout(scaleInstrument, 50);
         }
 
+        // Expose to outer scope for changeNoteSystem and changeLanguage
+        window._folkbox = {
+            get CURRENT_KEY() { return CURRENT_KEY; },
+            set CURRENT_KEY(v) { CURRENT_KEY = v; },
+            get CURRENT_CHORD() { return CURRENT_CHORD; },
+            set CURRENT_CHORD(v) { CURRENT_CHORD = v; },
+            get CURRENT_NOTE_SYSTEM() { return CURRENT_NOTE_SYSTEM; },
+            set CURRENT_NOTE_SYSTEM(v) { CURRENT_NOTE_SYSTEM = v; },
+            get CURRENT_LANG() { return CURRENT_LANG; },
+            set CURRENT_LANG(v) { CURRENT_LANG = v; },
+            generate, render, convertNote, getKeyDisplayText, AVAILABLE_KEYS, NOTE_SYSTEMS
+        };
+
         if (document.readyState === "loading") {
             document.addEventListener("DOMContentLoaded", init);
         } else {
             init();
         }
     })();
+
+    // Vertimai
+    const translations = {
+        lt: {
+            back: "GRĮŽTI",
+            major: "MAŽORAS",
+            minor: "MINORAS",
+            intro: "FolkBox – vizualus įrankis, skirtas padėti suprasti rusiškos armonikos išdėstymą. Pasirink tonaciją ir pamatyk mygtukų išdėstymą bei galimus, melodijos pusėje sugroti, akordus.",
+            credit: "© 2026 FolkBox | Motiejus Kazabuckas",
+            close: "Uždaryti"
+        },
+        en: {
+            back: "BACK",
+            major: "MAJOR",
+            minor: "MINOR",
+            intro: "FolkBox – a visual tool to help understand the layout of the Russian harmonika. Choose a key and see the button layout and the chords that can be played on the melody side.",
+            credit: "© 2026 FolkBox | Motiejus Kazabuckas",
+            close: "Close"
+        },
+        ru: {
+            back: "НАЗАД",
+            major: "МАЖОР",
+            minor: "МИНОР",
+            intro: "FolkBox – визуальный инструмент, помогающий понять расположение кнопок русской гармони. Выберите тональность и увидите расположение кнопок и аккорды, которые можно сыграть на стороне мелодии.",
+            credit: "© 2026 FolkBox | Мотеюс Казабуцкас",
+            close: "Закрыть"
+        }
+    };
+
+    function changeLanguage(lang) {
+        const fb = window._folkbox;
+        fb.CURRENT_LANG = lang;
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        event.target.classList.add('active');
+
+        document.getElementById('back-text').textContent = translations[lang].back;
+        document.getElementById('major-title').textContent = translations[lang].major;
+        document.getElementById('minor-title').textContent = translations[lang].minor;
+        document.getElementById('intro-text').textContent = translations[lang].intro;
+        document.getElementById('credit').textContent = translations[lang].credit;
+
+        // Update key selector button text
+        const keyBtnText = document.querySelector('#key-selector-btn .button-text');
+        if (keyBtnText) {
+            const currentKey = fb.AVAILABLE_KEYS.find(k => k.note === fb.CURRENT_KEY);
+            if (currentKey) {
+                keyBtnText.textContent = fb.getKeyDisplayText(currentKey);
+            }
+        }
+
+        // Update key popup buttons
+        document.querySelectorAll('#key-popup button:not(.close-popup)').forEach(btn => {
+            const keyNote = btn.dataset.key;
+            if (keyNote) {
+                const keyInfo = fb.AVAILABLE_KEYS.find(k => k.note === keyNote);
+                if (keyInfo) {
+                    btn.textContent = fb.getKeyDisplayText(keyInfo);
+                }
+            }
+        });
+
+        // Update close button in popup
+        const closeBtn = document.querySelector('.close-popup');
+        if (closeBtn) {
+            closeBtn.textContent = translations[lang].close;
+        }
+    }
+
+    function changeNoteSystem(system) {
+        const fb = window._folkbox;
+        fb.CURRENT_NOTE_SYSTEM = system;
+        document.querySelectorAll('.note-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        event.target.classList.add('active');
+        
+        // Update key selector button text
+        const keyBtnText = document.querySelector('#key-selector-btn .button-text');
+        if (keyBtnText) {
+            const currentKey = fb.AVAILABLE_KEYS.find(k => k.note === fb.CURRENT_KEY);
+            if (currentKey) {
+                keyBtnText.textContent = fb.getKeyDisplayText(currentKey);
+            }
+        }
+
+        // Update key popup buttons
+        document.querySelectorAll('#key-popup button:not(.close-popup)').forEach(btn => {
+            const keyNote = btn.dataset.key;
+            if (keyNote) {
+                const keyInfo = fb.AVAILABLE_KEYS.find(k => k.note === keyNote);
+                if (keyInfo) {
+                    btn.textContent = fb.getKeyDisplayText(keyInfo);
+                }
+            }
+        });
+        
+        // Re-render schema buttons and chord buttons with new note system
+        fb.CURRENT_CHORD = { root: null, type: null };
+        const newLayout = fb.generate(fb.CURRENT_KEY);
+        fb.render(newLayout);
+    }
 </script>
+
 </body>
 </html>

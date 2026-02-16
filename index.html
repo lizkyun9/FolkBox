@@ -2,10 +2,14 @@
 <html lang="lt">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link rel="icon" type="image/png" href="images/icon.png">
 
+<meta name="keywords" content="armonika, chromkė, garmon, rusiška armonika, armonikos schema, armonikos mygtukai, liaudies muzika, folkloras, armonika internete, peterburgo armonika, Vienos armonika, bandonija, armonikos istorija, armonika Lietuvoje">
+
 <title>FolkBox</title>
+
+<meta name="description" content="FolkBox – vizualus įrankis, skirtas padėti suprasti rusiškos armonikos išdėstymą. Pasirink tonaciją ir pamatyk mygtukų išdėstymą bei melodijos pusėje sugroti galimus akordus.">
 
 <style>
   body {
@@ -31,6 +35,42 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+  }
+
+  /* LANGUAGE BUTTONS */
+  .lang-buttons {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 20;
+    display: flex;
+    gap: 10px;
+  }
+
+  .lang-btn {
+    background: #282936;
+    color: white;
+    border: 2px solid white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 14px;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .lang-btn:hover {
+    background: white;
+    color: #282936;
+  }
+
+  .lang-btn.active {
+    background: white;
+    color: #282936;
   }
 
   /* CONTENT BLOCK */
@@ -144,19 +184,66 @@
     position: absolute;
     bottom: 15px;
     left: 0;
-    width: 40%; /* tiek pat kiek ir baltas fonas */
+    width: 40%;
     color: #888;
     font-size: 11px;
     text-align: center;
     z-index: 10;
   }
 
+  /* MOBILE VERSION */
+  @media (max-width: 768px) {
+    .hero {
+      background: rgb(224, 224, 224);
+    }
+    
+    .content {
+      left: 5%;
+      right: 5%;
+      text-align: center;
+      bottom: 15%;
+      width: 90%;
+    }
+    
+    .buttons {
+      align-items: center;
+    }
+    
+    .buttons button:nth-child(2),
+    .buttons button:nth-child(3) {
+      margin-left: 0;
+      margin-top: 15px;
+    }
+    
+    button.learn-more {
+      width: 14rem;
+    }
+    
+    .credit {
+      left: 5%;
+      right: 5%;
+      width: 90%;
+      text-align: center;
+    }
+    
+    .lang-buttons {
+      top: 10px;
+      right: 10px;
+    }
+  }
 </style>
 </head>
 
 <body>
 
 <div class="hero">
+  <!-- LANGUAGE BUTTONS -->
+  <div class="lang-buttons">
+    <button class="lang-btn active" onclick="changeLanguage('lt')">LT</button>
+    <button class="lang-btn" onclick="changeLanguage('en')">EN</button>
+    <button class="lang-btn" onclick="changeLanguage('ru')">RU</button>
+  </div>
+
   <div class="content">
     <div class="buttons">
       
@@ -164,33 +251,70 @@
         <span class="circle">
           <span class="icon arrow"></span>
         </span>
-        <span class="button-text">APIE</span>
+        <span class="button-text" id="btn-about">APIE</span>
       </button>
 
       <button class="learn-more" onclick="window.location.href='chromke.html'">
         <span class="circle">
           <span class="icon arrow"></span>
         </span>
-        <span class="button-text">ARMONIKA</span>
+        <span class="button-text" id="btn-harmonika">ARMONIKA</span>
       </button>
 
       <button class="learn-more" onclick="window.location.href='parama.html'">
         <span class="circle">
           <span class="icon arrow"></span>
         </span>
-        <span class="button-text">PARAMA</span>
+        <span class="button-text" id="btn-support">PARAMA</span>
       </button>
 
     </div>
     
   </div>
   
-  <!-- CREDIT - fono apačioje, baltame fone -->
-  <div class="credit">
+  <!-- CREDIT -->
+  <div class="credit" id="credit-text">
     © 2026 FolkBox | Motiejus Kazabuckas
   </div>
  
 </div>
+
+<script>
+  const translations = {
+    lt: {
+      about: "APIE",
+      harmonika: "ARMONIKA",
+      support: "PARAMA",
+      credit: "© 2026 FolkBox | Motiejus Kazabuckas"
+    },
+    en: {
+      about: "ABOUT",
+      harmonika: "HARMONIKA",
+      support: "SUPPORT",
+      credit: "© 2026 FolkBox | Motiejus Kazabuckas"
+    },
+    ru: {
+      about: "О ПРОЕКТЕ",
+      harmonika: "ГАРМОНЬ",
+      support: "ПОДДЕРЖКА",
+      credit: "© 2026 FolkBox | Мотеюс Казабуцкас"
+    }
+  };
+
+  function changeLanguage(lang) {
+    // Update active button
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.remove('active');
+    });
+    event.target.classList.add('active');
+
+    // Update text content
+    document.getElementById('btn-about').textContent = translations[lang].about;
+    document.getElementById('btn-harmonika').textContent = translations[lang].harmonika;
+    document.getElementById('btn-support').textContent = translations[lang].support;
+    document.getElementById('credit-text').textContent = translations[lang].credit;
+  }
+</script>
 
 </body>
 </html>
