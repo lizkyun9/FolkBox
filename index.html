@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="/images/icon.png">
+
+<title>FolkBox</title>
+
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+
+  /* HERO BACKGROUND */
+  .hero {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+
+    background:
+      linear-gradient(
+        to top right,
+        rgb(224, 224, 224) 0%,
+        rgb(224, 224, 224) 40%,
+        transparent 40%
+      ),
+      url("/images/background.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  /* CONTENT BLOCK */
+  .content {
+    position: absolute;
+    bottom: 15%;
+    left: 8%;
+  }
+
+  .buttons {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Stairs effect */
+  .buttons button:nth-child(2) {
+    margin-left: 40px;
+    margin-top: 20px;
+  }
+
+  .buttons button:nth-child(3) {
+    margin-left: 80px;
+    margin-top: 20px;
+  }
+
+  /* BUTTON STYLES */
+  button {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    outline: none;
+    border: 0;
+    background: transparent;
+    padding: 0;
+    font-size: inherit;
+    font-family: inherit;
+  }
+
+  button.learn-more {
+    width: 12rem;
+  }
+
+  button.learn-more .circle {
+    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+    position: relative;
+    display: block;
+    width: 3rem;
+    height: 3rem;
+    background: #282936;
+    border-radius: 1.625rem;
+  }
+
+  button.learn-more .circle .icon {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    background: #fff;
+  }
+
+  button.learn-more .circle .icon.arrow {
+    left: 0.625rem;
+    width: 1.125rem;
+    height: 0.125rem;
+    background: none;
+  }
+
+  button.learn-more .circle .icon.arrow::before {
+    position: absolute;
+    content: "";
+    top: -0.29rem;
+    right: 0.0625rem;
+    width: 0.625rem;
+    height: 0.625rem;
+    border-top: 0.125rem solid #fff;
+    border-right: 0.125rem solid #fff;
+    transform: rotate(45deg);
+  }
+
+  button.learn-more .button-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0.75rem 0;
+    margin-left: 1.85rem;
+    color: #282936;
+    font-weight: 700;
+    line-height: 1.6;
+    text-align: center;
+    text-transform: uppercase;
+    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  }
+
+  button:hover .circle {
+    width: 100%;
+  }
+
+  button:hover .circle .icon.arrow {
+    background: #fff;
+    transform: translate(1rem, 0);
+  }
+
+  button:hover .button-text {
+    color: #fff;
+  }
+
+  /* CREDIT - fono apačioje, baltame fone */
+  .credit {
+    position: absolute;
+    bottom: 15px;
+    left: 0;
+    width: 40%; /* tiek pat kiek ir baltas fonas */
+    color: #888;
+    font-size: 11px;
+    text-align: center;
+    z-index: 10;
+  }
+
+</style>
+</head>
+
+<body>
+
+<div class="hero">
+  <div class="content">
+    <div class="buttons">
+      
+      <button class="learn-more" onclick="window.location.href='apie.html'">
+        <span class="circle">
+          <span class="icon arrow"></span>
+        </span>
+        <span class="button-text">APIE</span>
+      </button>
+
+      <button class="learn-more" onclick="window.location.href='chromke.html'">
+        <span class="circle">
+          <span class="icon arrow"></span>
+        </span>
+        <span class="button-text">ARMONIKA</span>
+      </button>
+
+      <button class="learn-more" onclick="window.location.href='parama.html'">
+        <span class="circle">
+          <span class="icon arrow"></span>
+        </span>
+        <span class="button-text">PARAMA</span>
+      </button>
+
+    </div>
+    
+  </div>
+  
+  <!-- CREDIT - fono apačioje, baltame fone -->
+  <div class="credit">
+    © 2026 FolkBox | Motiejus Kazabuckas
+  </div>
+ 
+</div>
+
+</body>
+</html>

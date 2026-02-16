@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Armonika | FolkBox</title>
+    <link rel="icon" type="image/png" href="/images/icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* =======================
+           GLOBAL PAGE STYLE
+        ======================= */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+            background: rgb(224, 224, 224);
+        }
+
+        /* =======================
+           LEFT PANEL (40%) - Schema
+        ======================= */
+        .left-panel {
+            width: 40%;
+            background: rgb(224, 224, 224);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 15px;
+            overflow-y: auto;
+        }
+
+        /* =======================
+           RIGHT PANEL (60%) - Background image
+        ======================= */
+        .right-panel {
+            width: 60%;
+            background-image: url('/images/chromke.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: #282936;
+        }
+
+        /* =======================
+           BACK BUTTON
+        ======================= */
+        .back-button {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            outline: none;
+            border: 0;
+            background: transparent;
+            padding: 0;
+            font-size: inherit;
+            font-family: inherit;
+            width: 10rem;
+            margin: 0 auto 20px auto;
+            text-align: left;
+        }
+
+        .back-button .circle {
+            transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+            position: relative;
+            display: block;
+            width: 3rem;
+            height: 3rem;
+            background: #282936;
+            border-radius: 1.625rem;
+        }
+
+        .back-button .circle .icon {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            background: #fff;
+        }
+
+        .back-button .circle .icon.arrow {
+            left: 0.625rem;
+            width: 1.125rem;
+            height: 0.125rem;
+            background: none;
+        }
+
+        .back-button .circle .icon.arrow::before {
+            position: absolute;
+            content: "";
+            top: -0.29rem;
+            right: 0.0625rem;
+            width: 0.625rem;
+            height: 0.625rem;
+            border-top: 0.125rem solid #fff;
+            border-right: 0.125rem solid #fff;
+            transform: rotate(45deg);
+        }
+
+        .back-button .button-text {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 0.75rem 0;
+            margin-left: 1.85rem;
+            color: #282936;
+            font-weight: 700;
+            line-height: 1.6;
+            text-align: center;
+            text-transform: uppercase;
+            transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+        }
+
+        .back-button:hover .circle {
+            width: 100%;
+        }
+
+        .back-button:hover .circle .icon.arrow {
+            background: #fff;
+            transform: translate(1rem, 0);
+        }
+
+        .back-button:hover .button-text {
+            color: #fff;
+        }
+
+        /* =======================
+           KEY SELECTOR
+        ======================= */
+        .key-selector-container {
+            margin: 5px 0;
+            position: relative;
+            display: inline-block;
+            flex-shrink: 0;
+            width: auto;
+        }
+
+        #key-selector-btn {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            outline: none;
+            border: 0;
+            background: transparent;
+            padding: 0;
+            font-size: inherit;
+            font-family: inherit;
+            width: 14rem;
+            text-align: left;
+            background: transparent;
+            color: #282936;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        #key-selector-btn .circle {
+            transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+            position: relative;
+            display: block;
+            width: 3rem;
+            height: 3rem;
+            background: #282936;
+            border-radius: 1.625rem;
+        }
+
+        #key-selector-btn .circle .icon {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            background: #fff;
+        }
+
+        #key-selector-btn .circle .icon.arrow {
+            left: 0.625rem;
+            width: 1.125rem;
+            height: 0.125rem;
+            background: none;
+        }
+
+        #key-selector-btn .circle .icon.arrow::before {
+            position: absolute;
+            content: "";
+            top: -0.29rem;
+            right: 0.0625rem;
+            width: 0.625rem;
+            height: 0.625rem;
+            border-top: 0.125rem solid #fff;
+            border-right: 0.125rem solid #fff;
+            transform: rotate(45deg);
+        }
+
+        #key-selector-btn .button-text {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 0.75rem 0;
+            margin-left: 1.85rem;
+            color: #282936;
+            font-weight: 700;
+            line-height: 1.6;
+            text-align: center;
+            text-transform: uppercase;
+            transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+            white-space: nowrap;
+        }
+
+        #key-selector-btn:hover .circle {
+            width: 100%;
+        }
+
+        #key-selector-btn:hover .circle .icon.arrow {
+            background: #fff;
+            transform: translate(1rem, 0);
+        }
+
+        #key-selector-btn:hover .button-text {
+            color: #fff;
+        }
+
+        #key-popup {
+            position: absolute;
+            top: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #282936;
+            border: 1px solid white;
+            border-radius: 16px;
+            padding: 20px;
+            width: 350px;
+            max-width: 90vw;
+            display: none;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            z-index: 1000;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+
+        #key-popup button {
+            background: #282936;
+            color: white;
+            border: 1px solid white;
+            padding: 10px 5px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        #key-popup button:hover {
+            background: #4a4b5f;
+        }
+
+        #key-popup button.active {
+            background: white;
+            color: black;
+        }
+
+        .close-popup {
+            grid-column: span 3;
+            background: rgb(224, 224, 224) !important;
+            color: #282936 !important;
+            border: none !important;
+            margin-top: 10px;
+        }
+
+        /* =======================
+           CHORD SECTIONS - DVI EILUTĖS
+        ======================= */
+        .chord-section {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 10px 0 5px;
+            flex-shrink: 0;
+        }
+
+        .chord-row {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 2px 0;
+        }
+
+        .chord-row h3 {
+            font-size: 12px;
+            color: #282936;
+            margin: 0 0 3px 0;
+            text-align: center;
+            width: 100%;
+            opacity: 0.8;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .chord-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 5px;
+            margin: 0 auto;
+            max-width: 100%;
+            padding: 2px;
+        }
+
+        .chord-buttons .chord-btn {
+            background: #282936;
+            color: #eee;
+            border: 1px solid #666;
+            padding: 4px 8px;
+            border-radius: 16px;
+            cursor: pointer;
+            font-size: 11px;
+            transition: all 0.2s;
+        }
+
+        .chord-buttons .chord-btn:hover {
+            background: #4a4b5f;
+            transform: scale(1.05);
+        }
+
+        .chord-buttons .chord-btn.active {
+            background: #ffffff;
+            color: #282936;
+            border-color: #282936;
+        }
+
+        /* =======================
+           INSTRUMENT VISUALIZATION
+        ======================= */
+        #instrument-scale-wrapper {
+            width: 100%;
+            flex: 1 1 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 0;
+            position: relative;
+            overflow: visible;
+        }
+
+        #instrument-content {
+            transform-origin: center center;
+            width: 780px;
+            height: auto;
+            display: flex;
+            justify-content: center;
+        }
+
+        .layout {
+            display: flex;
+            justify-content: center;
+            gap: 80px;
+            margin: 0;
+        }
+
+        .panel {
+            position: relative;
+            width: 160px;
+            height: 650px;
+        }
+
+        .btn {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid white;
+            background: #282936;
+            color: white;
+            font-size: 12px;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            cursor: pointer;
+            transition: all 0.15s;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .btn.active,
+        .btn.chord {
+            background: white;
+            color: #282936;
+        }
+
+        /* Melody pozicijos */
+        .melody .r1 { left: 10px; }
+        .melody .r2 { left: 60px; }
+
+        /* Bass pozicijos */
+        .bass .c1 { left: 5px; }
+        .bass .c2 { left: 55px; }
+        .bass .c3 { left: 105px; }
+
+        .intro-text {
+            max-width: 100%;
+            margin: 5px 0 5px;
+            color: #666;
+            font-size: 12px;
+            line-height: 1.3;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .credit {
+            margin-top: 5px;
+            color: #888;
+            font-size: 11px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        /* =======================
+           MOBILE VERSION (iki 768px)
+        ======================= */
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;  /* Vietoj horizontalaus - vertikalus */
+            }
+            
+            .left-panel {
+                width: 100%;  /* Užima visą plotį */
+                height: 100vh; /* Visą aukštį */
+                padding: 10px;
+            }
+            
+            .right-panel {
+                display: none;  /* Nuotrauka dingsta */
+            }
+            
+            /* Sumažinam mygtukus, kad tilptų */
+            .btn {
+                width: 36px;
+                height: 36px;
+                font-size: 11px;
+            }
+            
+            .layout {
+                gap: 40px;
+            }
+            
+            .melody .r1 { left: 5px; }
+            .melody .r2 { left: 50px; }
+            .bass .c1 { left: 0px; }
+            .bass .c2 { left: 45px; }
+            .bass .c3 { left: 90px; }
+            
+            /* Mygtukų pozicijos šiek tiek mažesnės */
+            .melody .btn { top: calc(10px + var(--i) * 38px); }
+            
+            #instrument-content {
+                width: 700px;  /* Šiek tiek mažesnis */
+            }
+            
+            .back-button {
+                width: 9rem;
+                margin-bottom: 10px;
+            }
+            
+            #key-selector-btn {
+                width: 12rem;
+            }
+            
+            .chord-btn {
+                font-size: 10px;
+                padding: 3px 6px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            /* Dar mažesniems ekranams */
+            .btn {
+                width: 32px;
+                height: 32px;
+                font-size: 10px;
+            }
+            
+            .layout {
+                gap: 30px;
+            }
+            
+            .melody .r1 { left: 0px; }
+            .melody .r2 { left: 40px; }
+            .bass .c1 { left: -5px; }
+            .bass .c2 { left: 35px; }
+            .bass .c3 { left: 75px; }
+            
+            #instrument-content {
+                width: 600px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- LEFT PANEL (40%) - Schema -->
+    <div class="left-panel">
+        <!-- GRĮŽTAMASIS MYGTUKAS -->
+        <button class="back-button" onclick="window.location.href='index.html'">
+            <span class="circle">
+                <span class="icon arrow"></span>
+            </span>
+            <span class="button-text">GRĮŽTI</span>
+        </button>
+
+        <!-- KEY SELECTOR POPUP -->
+        <div class="key-selector-container">
+            <button id="key-selector-btn">
+                <span class="circle">
+                    <span class="icon arrow"></span>
+                </span>
+                <span class="button-text">A (Lia-dur)</span>
+            </button>
+            <div id="key-popup"></div>
+        </div>
+
+        <!-- INSTRUMENT VISUALIZATION -->
+        <div id="instrument-scale-wrapper">
+            <div id="instrument-content">
+                <div class="layout">
+                    <div class="panel melody"></div>
+                    <div class="panel bass"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CHORD SECTION - DVI EILUTĖS -->
+        <div class="chord-section">
+            <div class="chord-row">
+                <h3>MAŽORAS</h3>
+                <div id="chord-bar-major" class="chord-buttons"></div>
+            </div>
+            <div class="chord-row">
+                <h3>MINORAS</h3>
+                <div id="chord-bar-minor" class="chord-buttons"></div>
+            </div>
+        </div>
+
+        <p class="intro-text">
+            FolkBox – vizualus įrankis, skirtas padėti suprasti rusiškos armonikos išdėstymą. Pasirink tonaciją ir pamatyk mygtukų išdėstymą bei galimus, melodijos pusėje sugroti, akordus.
+        </p>
+
+        <div class="credit">
+            © 2026 FolkBox | Motiejus Kazabuckas
+        </div>
+    </div>
+
+    <!-- RIGHT PANEL (60%) - Background image -->
+    <div class="right-panel"></div>
+
+<script>
+    (function() {
+        // ========================
+        // CONSTANTS & DATA
+        // ========================
+        const NOTES = ["C","Cis","D","Dis","E","F","Fis","G","Gis","A","Ais","H"];
+        
+        const MELODY_ROW1_A = ["C","F","A","Cis","E","Gis","H","D","Fis","A","Cis","E","Gis"];
+        const MELODY_ROW2_A = ["Dis","H","D","Fis","A","Cis","E","Gis","H","D","Fis","A"];
+        
+        const BASS_COL1_A = ["H","Fis","Gis","A","H","Cis","D","E","Fis"];
+        const BASS_COL2_A = ["Gis7","Gis","Cis7","Cis","Fism","Fis","Hm","H"];
+        const BASS_COL3_A = ["H7","H","E","E","A","A","D","D"];
+
+        const AVAILABLE_KEYS = [
+            { note: "C", description: "Do-dur" },
+            { note: "Cis", description: "Cis-dur" },
+            { note: "D", description: "Re-dur" },
+            { note: "Dis", description: "Dis-dur" },
+            { note: "E", description: "Mi-dur" },
+            { note: "F", description: "Fa-dur" },
+            { note: "Fis", description: "Fis-dur" },
+            { note: "G", description: "Sol-dur" },
+            { note: "Gis", description: "Gis-dur" },
+            { note: "A", description: "Lia-dur" },
+            { note: "Ais", description: "B-dur / Sib-dur" },
+            { note: "H", description: "Si-dur" }
+        ];
+
+        let CURRENT_KEY = "A";
+        let CURRENT_CHORD = { root: null, type: null };  // { root: "C", type: "major" } arba "minor"
+
+        function base(n) { return n.replace(/7|m/g,""); }
+        function suf(n) { return n.replace(base(n),""); }
+
+        function transpose(n, s) {
+            const i = NOTES.indexOf(base(n));
+            return (i === -1) ? n : NOTES[(i + s + 12) % 12] + suf(n);
+        }
+
+        function generate(key) {
+            const shift = NOTES.indexOf(key) - NOTES.indexOf("A");
+            return {
+                r1: MELODY_ROW1_A.map(n => transpose(n, shift)),
+                r2: MELODY_ROW2_A.map(n => transpose(n, shift)),
+                b1: BASS_COL1_A.map(n => transpose(n, shift)),
+                b2: BASS_COL2_A.map(n => transpose(n, shift)),
+                b3: BASS_COL3_A.map(n => transpose(n, shift)),
+            };
+        }
+
+        function render(t) {
+            const melody = document.querySelector(".melody");
+            const bass = document.querySelector(".bass");
+
+            if (!melody || !bass) return;
+
+            melody.innerHTML = "";
+            bass.innerHTML = "";
+
+            t.r1.forEach((note, i) => {
+                const div = document.createElement("div");
+                div.className = "btn r1";
+                div.style.top = `${15 + i*42}px`;
+                div.textContent = note;
+                div.addEventListener("click", () => div.classList.toggle("active"));
+                melody.appendChild(div);
+            });
+            
+            t.r2.forEach((note, i) => {
+                const div = document.createElement("div");
+                div.className = "btn r2";
+                div.style.top = `${32 + i*42}px`;
+                div.textContent = note;
+                div.addEventListener("click", () => div.classList.toggle("active"));
+                melody.appendChild(div);
+            });
+
+            t.b1.forEach((note, i) => {
+                const div = document.createElement("div");
+                div.className = "btn c1";
+                div.style.top = `${15 + i*50}px`;
+                div.textContent = note;
+                div.addEventListener("click", () => div.classList.toggle("active"));
+                bass.appendChild(div);
+            });
+            
+            t.b2.forEach((note, i) => {
+                const div = document.createElement("div");
+                div.className = "btn c2";
+                div.style.top = `${42 + i*50}px`;
+                div.textContent = note;
+                div.addEventListener("click", () => div.classList.toggle("active"));
+                bass.appendChild(div);
+            });
+            
+            t.b3.forEach((note, i) => {
+                const div = document.createElement("div");
+                div.className = "btn c3";
+                div.style.top = `${28 + i*50}px`;
+                div.textContent = note;
+                div.addEventListener("click", () => div.classList.toggle("active"));
+                bass.appendChild(div);
+            });
+
+            updateChordBars();
+        }
+
+        function getMelodyNotesSet() {
+            return new Set(
+                Array.from(document.querySelectorAll(".melody .btn"))
+                     .map(b => b.textContent.trim())
+            );
+        }
+
+        function chordNotes(root, type) {
+            const idx = NOTES.indexOf(root);
+            if (idx === -1) return [];
+            const third = NOTES[(idx + (type === "major" ? 4 : 3)) % 12];
+            const fifth = NOTES[(idx + 7) % 12];
+            return [root, third, fifth];
+        }
+
+        function clearChordHighlight() {
+            document.querySelectorAll(".melody .btn.chord")
+                .forEach(b => b.classList.remove("chord"));
+            document.querySelectorAll(".chord-btn")
+                .forEach(b => b.classList.remove("active"));
+        }
+
+        function applyChordHighlight(root, type) {
+            const triad = chordNotes(root, type);
+            document.querySelectorAll(".melody .btn").forEach(b => {
+                if (triad.includes(b.textContent.trim())) {
+                    b.classList.add("chord");
+                }
+            });
+        }
+
+        function updateChordBars() {
+            const majorBar = document.getElementById("chord-bar-major");
+            const minorBar = document.getElementById("chord-bar-minor");
+            if (!majorBar || !minorBar) return;
+            
+            majorBar.innerHTML = "";
+            minorBar.innerHTML = "";
+            
+            const set = getMelodyNotesSet();
+
+            NOTES.forEach(root => {
+                // Major
+                const majorTriad = chordNotes(root, "major");
+                if (majorTriad.every(n => set.has(n))) {
+                    const btn = document.createElement("button");
+                    btn.textContent = root;
+                    btn.className = "chord-btn";
+                    btn.dataset.root = root;
+                    btn.dataset.type = "major";
+                    majorBar.appendChild(btn);
+
+                    btn.addEventListener("click", () => {
+                        document.querySelectorAll(".btn.active").forEach(b => b.classList.remove("active"));
+
+                        const same = CURRENT_CHORD.root === root && CURRENT_CHORD.type === "major";
+
+                        clearChordHighlight();
+
+                        if (same) {
+                            CURRENT_CHORD = { root: null, type: null };
+                            btn.classList.remove("active");
+                        } else {
+                            CURRENT_CHORD = { root: root, type: "major" };
+                            document.querySelectorAll(".chord-btn").forEach(b => b.classList.remove("active"));
+                            btn.classList.add("active");
+                            applyChordHighlight(root, "major");
+                        }
+                    });
+                }
+
+                // Minor
+                const minorTriad = chordNotes(root, "minor");
+                if (minorTriad.every(n => set.has(n))) {
+                    const btn = document.createElement("button");
+                    btn.textContent = root + "m";
+                    btn.className = "chord-btn";
+                    btn.dataset.root = root;
+                    btn.dataset.type = "minor";
+                    minorBar.appendChild(btn);
+
+                    btn.addEventListener("click", () => {
+                        document.querySelectorAll(".btn.active").forEach(b => b.classList.remove("active"));
+
+                        const same = CURRENT_CHORD.root === root && CURRENT_CHORD.type === "minor";
+
+                        clearChordHighlight();
+
+                        if (same) {
+                            CURRENT_CHORD = { root: null, type: null };
+                            btn.classList.remove("active");
+                        } else {
+                            CURRENT_CHORD = { root: root, type: "minor" };
+                            document.querySelectorAll(".chord-btn").forEach(b => b.classList.remove("active"));
+                            btn.classList.add("active");
+                            applyChordHighlight(root, "minor");
+                        }
+                    });
+                }
+            });
+        }
+
+        function setupKeyPopup() {
+            const popup = document.getElementById("key-popup");
+            const selectorBtn = document.getElementById("key-selector-btn");
+            
+            AVAILABLE_KEYS.forEach(keyInfo => {
+                const btn = document.createElement("button");
+                btn.textContent = `${keyInfo.note} (${keyInfo.description})`;
+                btn.dataset.key = keyInfo.note;
+                
+                if (keyInfo.note === CURRENT_KEY) btn.classList.add("active");
+                
+                btn.addEventListener("click", () => {
+                    CURRENT_KEY = keyInfo.note;
+                    CURRENT_CHORD = { root: null, type: null };
+                    
+                    const buttonText = selectorBtn.querySelector('.button-text');
+                    if (buttonText) {
+                        buttonText.textContent = `${keyInfo.note} (${keyInfo.description})`;
+                    }
+                    
+                    document.querySelectorAll("#key-popup button:not(.close-popup)").forEach(b => b.classList.remove("active"));
+                    btn.classList.add("active");
+                    
+                    popup.style.display = "none";
+                    render(generate(CURRENT_KEY));
+                });
+                
+                popup.appendChild(btn);
+            });
+            
+            const closeBtn = document.createElement("button");
+            closeBtn.textContent = "Uždaryti";
+            closeBtn.className = "close-popup";
+            closeBtn.addEventListener("click", () => popup.style.display = "none");
+            popup.appendChild(closeBtn);
+            
+            selectorBtn.addEventListener("click", (e) => {
+                e.stopPropagation();
+                popup.style.display = popup.style.display === "grid" ? "none" : "grid";
+            });
+            
+            document.addEventListener("click", (e) => {
+                if (!popup.contains(e.target) && e.target !== selectorBtn) {
+                    popup.style.display = "none";
+                }
+            });
+        }
+
+        function scaleInstrument() {
+            const content = document.getElementById("instrument-content");
+            const wrapper = document.getElementById("instrument-scale-wrapper");
+            
+            if (!content || !wrapper) return;
+            
+            content.style.transform = "scale(1)";
+            
+            const wrapperHeight = wrapper.clientHeight;
+            const contentHeight = 650;
+            
+            if (contentHeight > wrapperHeight) {
+                const scale = wrapperHeight / contentHeight * 0.95;
+                content.style.transform = `scale(${scale})`;
+            }
+        }
+
+        function init() {
+            setupKeyPopup();
+            
+            window.addEventListener("load", scaleInstrument);
+            window.addEventListener("resize", scaleInstrument);
+            
+            render(generate(CURRENT_KEY));
+            setTimeout(scaleInstrument, 50);
+        }
+
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", init);
+        } else {
+            init();
+        }
+    })();
+</script>
+</body>
+</html>
